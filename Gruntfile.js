@@ -17,6 +17,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    css_prefix: {
+      thirdparty: {
+        options: {
+          prefix: 'vydia-',
+        },
+        files: {
+          'src/flexboxgrid2.css': ['src/flexboxgrid2og.css']
+        }
+      }
+    },
     cssmin: {
       concat: {
         files: {
@@ -81,6 +91,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-processhtml");
   grunt.loadNpmTasks("grunt-contrib-htmlmin");
+  grunt.loadNpmTasks('grunt-css-prefix');
 
   // Default task.
   grunt.registerTask("default", [
@@ -89,7 +100,8 @@ module.exports = function(grunt) {
     "cssmin:minify",
     "cssmin:release",
     "processhtml",
-    "htmlmin"
+    "htmlmin",
+    "css_prefix",
   ]);
   grunt.registerTask("watch", ["watch"]);
 };
